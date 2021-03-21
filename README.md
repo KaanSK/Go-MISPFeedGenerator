@@ -23,6 +23,10 @@ Important Note: Go-MispFeedGenerator is not as sophisticated as [PyMisp] and [Py
 
 
 ## Usage
+Install with:
+````bash
+go get github.com/KaanSK/Go-MISPFeedGenerator
+````
 Check [Test Code](mispfeedgenerator_test.go)  
 
 ```go
