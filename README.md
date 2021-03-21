@@ -25,6 +25,29 @@ Important Note: Go-MispFeedGenerator is not as sophisticated as [PyMisp] and [Py
 ## Usage
 Check [Test Code](mispfeedgenerator_test.go)  
 
+```go
+func TestFeedGenerationWithMetadata(t *testing.T) {
+	defer cleanGeneratedFiles()
+	event, err := NewMispEvent()
+	if err != nil {
+		t.Errorf("Could not create new event")
+	}
+	event.Info = "Dummy event"
+	event.Orgc.Name = "TEST ORG"
+	event.Orgc.UUID = "dc9de8b2-889c-42e5-a65f-68ecda38eed0"
+
+	event.AddAttribute("email-dst", "111test1@test.com", "Network activity")
+	event.AddAttribute("btc", "111a3246asd8asd4a8asf5as8afs65fd77a", "")
+	event.AddAttribute("md5", "111847356890723489034292345875234", "")
+
+	err = event.GenerateFeed(true)
+	if err != nil {
+		t.Errorf("Could not generate feed with manifest and hashes. Error: %s", err)
+	}
+
+}
+```
+
 
 
 [PyMisp-FeedGenerator]: https://github.com/MISP/PyMISP/blob/main/examples/feed-generator/generate.py
