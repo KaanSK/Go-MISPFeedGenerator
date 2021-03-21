@@ -15,6 +15,7 @@ Important Note: Go-MispFeedGenerator is not as sophisticated as [PyMisp] and [Py
 * Add attribute to Event with type and with optional category
   * If category is not provided, library fetches the [attributeTypes.json] from official pymisp repo and gets the first category including the type
   * If category is provided, library checks the type/category against [attributeTypes.json] from official pymisp repo
+* Adding tags to event
 * Generate Feed
   * Library can generate event json with naming convention "EventUUID.json"
 * Generate Feed Metadata
@@ -39,6 +40,8 @@ func TestFeedGenerationWithMetadata(t *testing.T) {
 	event.Info = "Dummy event"
 	event.Orgc.Name = "TEST ORG"
 	event.Orgc.UUID = "dc9de8b2-889c-42e5-a65f-68ecda38eed0"
+	event.AddTag("type:OSINT", "#004646")
+	event.AddTag("tlp:white", "#005151")
 
 	event.AddAttribute("email-dst", "111test1@test.com", "Network activity")
 	event.AddAttribute("btc", "111a3246asd8asd4a8asf5as8afs65fd77a", "")
