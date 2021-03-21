@@ -191,6 +191,11 @@ func (me *event) AddAttribute(dataType string, data string, category string) (er
 	return nil
 }
 
+func (me *event) AddTag(name string, colour string) {
+	tag := tag{Name: name, Colour: colour}
+	me.Tag = append(me.Tag, tag)
+}
+
 func newAttribute() attribute {
 	att := attribute{}
 	att._fieldsForFeed = []string{"uuid", "value", "category", "type", "comment", "data", "deleted", "timestamp", "to_ids", "disable_correlation", "first_seen", "last_seen"}
