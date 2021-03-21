@@ -34,6 +34,41 @@ type tag struct {
 	Colour string `json:"colour"`
 }
 
+// Object is used for storing tag information
+type Object struct {
+	StrTimestamp    string `json:"timestamp"`
+	SharingGroupID  string `json:"sharing_group_id"`
+	Description     string `json:"description"`
+	Name            string `json:"name"`
+	Comment         string `json:"comment"`
+	UUID            string `json:"uuid"`
+	TemplateVersion string `json:"template_version"`
+	Distribution    string `json:"distribution"`
+	Deleted         bool   `json:"deleted"`
+	TemplateUUID    string `json:"template_uuid"`
+	MetaCategory    string `json:"meta-category"`
+	ObjectReference []struct {
+		Timestamp        string `json:"timestamp"`
+		RelationshipType string `json:"relationship_type"`
+		ObjectUUID       string `json:"object_uuid"`
+		Comment          string `json:"comment"`
+		UUID             string `json:"uuid"`
+		ReferencedUUID   string `json:"referenced_uuid"`
+	} `json:"ObjectReference,omitempty"`
+	Attribute []struct {
+		Value              string `json:"value"`
+		StrTimestamp       string `json:"timestamp"`
+		Comment            string `json:"comment"`
+		Category           string `json:"category"`
+		UUID               string `json:"uuid"`
+		ObjectRelation     string `json:"object_relation"`
+		Type               string `json:"type"`
+		ToIds              bool   `json:"to_ids"`
+		Deleted            bool   `json:"deleted"`
+		DisableCorrelation bool   `json:"disable_correlation"`
+	} `json:"Attribute"`
+}
+
 // Event definition
 type event struct {
 	_fieldsForFeed  []string               `json:"-"`
@@ -53,39 +88,7 @@ type event struct {
 	Orgc             orgc        `json:"Orgc"`
 	Tag              []tag       `json:"Tag"`
 	Attribute        []attribute `json:"Attribute"`
-	Object           []struct {
-		StrTimestamp    string `json:"timestamp"`
-		SharingGroupID  string `json:"sharing_group_id"`
-		Description     string `json:"description"`
-		Name            string `json:"name"`
-		Comment         string `json:"comment"`
-		UUID            string `json:"uuid"`
-		TemplateVersion string `json:"template_version"`
-		Distribution    string `json:"distribution"`
-		Deleted         bool   `json:"deleted"`
-		TemplateUUID    string `json:"template_uuid"`
-		MetaCategory    string `json:"meta-category"`
-		ObjectReference []struct {
-			Timestamp        string `json:"timestamp"`
-			RelationshipType string `json:"relationship_type"`
-			ObjectUUID       string `json:"object_uuid"`
-			Comment          string `json:"comment"`
-			UUID             string `json:"uuid"`
-			ReferencedUUID   string `json:"referenced_uuid"`
-		} `json:"ObjectReference,omitempty"`
-		Attribute []struct {
-			Value              string `json:"value"`
-			StrTimestamp       string `json:"timestamp"`
-			Comment            string `json:"comment"`
-			Category           string `json:"category"`
-			UUID               string `json:"uuid"`
-			ObjectRelation     string `json:"object_relation"`
-			Type               string `json:"type"`
-			ToIds              bool   `json:"to_ids"`
-			Deleted            bool   `json:"deleted"`
-			DisableCorrelation bool   `json:"disable_correlation"`
-		} `json:"Attribute"`
-	} `json:"Object"`
+	Object           []Object    `json:"Object"`
 }
 
 type eventFeed struct {
